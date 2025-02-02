@@ -109,14 +109,16 @@ function App() {
                   onChange={handleDateChange}
                 />
               </Form.Group>
-              <Form.Group controlId="rememberDate" className="mt-2">
-                <Form.Check
-                  type="checkbox"
-                  label="Geburtsdatum merken"
-                  checked={remember}
-                  onChange={handleRememberChange}
-                />
-              </Form.Group>
+              {retirementDate && timeLeft && (
+                <Form.Group controlId="rememberDate" className="mt-2">
+                  <Form.Check
+                    type="checkbox"
+                    label="Geburtsdatum merken"
+                    checked={remember}
+                    onChange={handleRememberChange}
+                  />
+                </Form.Group>
+              )}
               {dob && (
                 <Form.Group className="mt-2">
                   <Button variant="secondary" onClick={handleClearDate}>

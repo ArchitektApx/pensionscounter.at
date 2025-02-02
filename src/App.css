@@ -13,7 +13,8 @@
   border: none;
   border-radius: 1rem;
   padding: 2rem;
-  padding-bottom: 5rem; /* Increased bottom padding to create more space */
+  padding-bottom: 7rem; /* Ensures enough space for the Info button */
+  min-height: 200px; /* Added minimum height to prevent overlap when no counter is visible */
   color: #333;
   width: 100%;
   max-width: 800px;
