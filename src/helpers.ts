@@ -33,3 +33,5 @@ export const calculateTimeLeft = (targetDate: Date): TimeLeft => {
   const seconds = Math.floor((difference / 1000) % 60);
   return { days, hours, minutes, seconds };
 };
+
+export const explanationText = "Alle Daten werden ausschließlich in Ihrem Browser gespeichert und lokal berechnet. Es werden keine Daten über das Internet übertragen. Das Pensionsdatum wird gemäß österreichischer Regelung berechnet: Erster Tag des Monats nach dem 65. Geburtstag.";

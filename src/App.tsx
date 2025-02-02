@@ -2,13 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Card, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { calculateRetirementDate, calculateTimeLeft, TimeLeft } from './helpers';
+import { calculateRetirementDate, calculateTimeLeft, TimeLeft, explanationText } from './helpers';
 
 function App() {
   const [dob, setDob] = useState<string>('');
   const [retirementDate, setRetirementDate] = useState<Date | null>(null);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [remember, setRemember] = useState<boolean>(false);
+
+  const [isDarkMode] = useState<boolean>(() => {
+    return typeof window !== 'undefined' && window.matchMedia
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      : false;
+  });
 
   /**
    * Initializes the app by checking if a date of birth is stored in localStorage.
@@ -95,8 +101,9 @@ function App() {
   return (
     <Container fluid className="hero">
       <Row className="justify-content-center">
+        {/* Full-width column to center the card with responsive sizing */}
         <Col xs={12} className="d-flex justify-content-center">
-          <Card className="p-4 shadow card-bg">
+          <Card className={`p-4 shadow card-bg ${isDarkMode ? 'dark' : ''}`}>
             <Card.Title className="mb-3 text-center">
               Pensions Countdown
             </Card.Title>
@@ -156,7 +163,7 @@ function App() {
               placement="top"
               overlay={
                 <Tooltip id="info-tooltip">
-                  Alle Daten werden ausschließlich in Ihrem Browser gespeichert und lokal berechnet. Es werden keine Daten über das Internet übertragen. Das Pensionsdatum wird gemäß österreichischer Regelung berechnet: Erster Tag des Monats nach dem 65. Geburtstag.
+                  {explanationText}
                 </Tooltip>
               }
             >
